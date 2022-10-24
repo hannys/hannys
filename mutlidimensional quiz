@@ -1,0 +1,125 @@
+<?php
+// TO PREVENT UNCERSSARY MESSAGES BUT THE CODE IS WORKING
+error_reporting(E_ALL ^ E_NOTICE);  
+    $questions = array(
+        1=>array(
+            'question' => 'What was Meta Platforms Inc formerly known as?',
+            'answers' => array(
+                'a' => 'Instagram',
+                'b' => 'Facebook',
+                'c' => 'YouTube',
+                'd' => 'Google'
+            ),
+            'correct' => 'b'
+        ),
+        2=>array(
+            'question' => 'Which former British colony was given back to China in 1997?',
+            'answers' => array(
+                'a' => 'Singapore',
+                'b' => 'Hong Kong',
+                'c' => 'Brunei',
+                'd' => 'Philippines',
+            ),
+            'correct' => 'c'
+        ),
+        3=>array(
+            'question' => 'The logo for luxury car maker Porsche features which animal?',
+            'answers' => array(
+                'a' => 'Bull',
+                'b' => 'Horse',
+                'c' => 'Bear',
+                'd' => 'Cat'
+            ),
+            'correct' => 'a'
+        )
+    );
+?>
+
+
+<?php
+    if( $_SERVER['REQUEST_METHOD']=='POST' ){
+       
+       
+        $score=0;
+        $answers=array();
+       
+        foreach( $_POST['answers'] as $index => $answer ){
+            if( array_key_exists( (int)$index, $questions ) ){
+                if( $questions[ (int)$index ]['correct']==$answer ) {
+                    $score++;
+                }
+                $answers[(int)$index]=array(
+                    'question'  =>  $questions[ (int)$index ]['question'],
+                    'answer'    =>  $answer,
+                    'correct'   =>  $questions[ (int)$index ]['correct']==$answer
+                );
+            }
+           
+        }
+    }
+?>
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <title></title>
+    </head>
+    <body>
+        <form method="post" name="quizz" id="quiz">
+         
+            <ol>
+            <?php foreach( $questions as $questionno => $value ){ ?>
+
+
+            <li>
+                <h4><?php
+                    echo $value['question'];
+                    if( $_SERVER['REQUEST_METHOD']=='POST' ){
+                        echo $answers[$questionno]['correct'] ? '<span style="color:green">Correct</span>' : '<span style="color:red">Incorrect</span>';
+                       
+                    }
+                ?></h4>
+                <?php
+                    foreach( $value['answers'] as $letter => $answer ){
+                        $label = 'question-'.$questionno.'-answers-'.$letter;
+                ?>
+                <div>
+                    <input type="radio" name="answers[ <?php echo $questionno; ?> ]" id="<?php echo $label; ?>" value="<?php echo $letter; ?>" />
+                    <label for="<?php echo $label; ?>"><!--<?php echo $letter; ?>)--> <?php echo $answer; ?> </label>
+                </div>
+                <?php } ?>
+            </li>
+           
+         
+           
+
+
+            <?php } ?>
+            </ol>
+            <input type="submit" value="Submit Quiz" />
+            <br>
+            <?php
+             echo"Errors:<br>";
+            foreach( $questions as $questionno => $value ){
+                    if( $_SERVER['REQUEST_METHOD']=='POST' ){
+                   
+                       echo $answers[$questionno]['correct'] ? "" :"<b>Question #</b>".$questionno.$value['question']."<br>";
+
+
+                    }
+                }
+                ?>
+                <br>
+                  <?php
+                if( $_SERVER['REQUEST_METHOD']=='POST' ){
+                    printf('Congratulations you got %s/%s',$score,count($questions));
+                }
+            ?>
+<br>
+
+
+        </form>
+
+
+    </body>
+</html>
