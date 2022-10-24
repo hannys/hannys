@@ -1,0 +1,25 @@
+<?php
+
+$country = array (
+
+ array("ID1",Africa,Nigeria),
+
+ array("ID2",America,Canada),
+
+ array("ID3",Asia,Indonesia),
+
+ array("ID4",Europe,Germany)
+
+);
+
+ 
+
+echo $country[0][0].": continent 1: ".$country[0][1].", country 1: ".$country[0][2].".<br>";
+
+echo $country[1][0].": continent 2: ".$country[1][1].", country 2: ".$country[1][2].".<br>";
+
+echo $country[2][0].": continent 3: ".$country[2][1].", country 3: ".$country[2][2].".<br>";
+
+echo $country[3][0].": continent 4: ".$country[3][1].", country 4: ".$country[3][2].".<br>";
+
+?>
