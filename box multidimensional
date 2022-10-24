@@ -1,0 +1,27 @@
+<?php
+
+$boxes = array(
+    array(
+        "Box" => "Small Box",
+        $Length = 12,
+        $Width = 10,
+        $Depth = 2.5,
+    ) ,
+    array(
+        "Box" => "Medium Box",
+        $Length = 30,
+        $Width = 20,
+        $Depth = 4,
+    ) ,
+    array(
+        "Box" => "Large Box",
+        $Length = 60,
+        $Width = 40,
+        $Depth = 11.5,
+    ) ,
+);
+echo "Volume of small box of length: " . $boxes[0][0] . " inches, width: " . $boxes[0][1] . " inches, and depth: " . $boxes[0][2] . " inches is " . $boxes[0][0] * $boxes[0][1] * $boxes[0][2] . " cubic inches. " . "<br>";
+echo "Volume of medium box of length: " . $boxes[1][0] . " inches, width: " . $boxes[1][1] . " inches, and depth: " . $boxes[1][2] . " inches is " . $boxes[1][0] * $boxes[1][1] * $boxes[1][2] . " cubic inches. " . "<br>";
+echo "Volume of large box of length: " . $boxes[2][0] . " inches, width: " . $boxes[2][1] . " inches, and depth: " . $boxes[2][2] . " inches is " . $boxes[2][0] * $boxes[2][1] * $boxes[2][2] . " cubic inches. " . "<br>";
+
+?>
